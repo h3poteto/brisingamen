@@ -91,8 +91,13 @@ func slackPost(pullRequest []github.Issue) {
 	slackURL := Config("slack_url")
 	channelName := Config("channel")
 
+	text := ""
+	for _, pr := range pullRequest {
+		text = text + *pr.Title + ": " + *pr.HTMLURL + "\n"
+	}
+
 	params, _ := json.Marshal(SlackMessage{
-		"Hello World",
+		text,
 		"PleaseReview",
 		":ghost:",
 		"",
