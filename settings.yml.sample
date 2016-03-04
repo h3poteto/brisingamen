@@ -1,4 +1,6 @@
 access_token: "hogehoge"
+slack_url: "https://hooks.slack.com/services/hogehoge"
+channel: "#random"
 repository:
   owner: "h3poteto"
   repo: "asumibot"
