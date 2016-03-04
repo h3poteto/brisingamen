@@ -1,0 +1,6 @@
+access_token: "hogehoge"
+repository:
+  owner: "h3poteto"
+  repo: "asumibot"
+labels:
+  - "todo"
