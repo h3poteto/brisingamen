@@ -2,6 +2,8 @@
 Brisingamen is a simple slack bot for github pull requests.
 It posts pull requests's information which belong to some labels in a your repository.
 
+[![SLACK](https://github.com/h3poteto/brisingamen/blob/master/slack_sample.png)](https://github.com/h3poteto/brisingamen/blob/master/slack_sample.png)
+
 # Example
 Brisingamen read `settings.yml` as setting file, so please read `settings.yml.sample` and write your `settings.yml`.
 
