@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"path/filepath"
@@ -38,10 +38,12 @@ func main() {
 	}
 
 	repo := Config("repository").(map[interface{}]interface{})
-	issues, _, err := client.Issues.ListByRepo(repo["owner"].(string), repo["repo"].(string), listOptions)
+	issues, resp, err := client.Issues.ListByRepo(repo["owner"].(string), repo["repo"].(string), listOptions)
 	if err != nil {
 		panic(err)
 	}
+
+	log.Println(resp)
 
 	// issueだとpullRequestも含めて全て取れるので、pullRequestに限定する
 	pullRequests := []github.Issue{}
@@ -50,7 +52,6 @@ func main() {
 			pullRequests = append(pullRequests, issue)
 		}
 	}
-	fmt.Printf("pullRequest: %v\n", pullRequests)
 
 	slackPost(pullRequests)
 }
@@ -111,6 +112,6 @@ func slackPost(pullRequest []github.Issue) {
 	body, _ := ioutil.ReadAll(resp.Body)
 	defer resp.Body.Close()
 
-	println(string(body))
+	log.Println(string(body))
 
 }
